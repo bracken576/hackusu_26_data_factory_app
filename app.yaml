@@ -4,7 +4,7 @@ env:
   - name: "DATABRICKS_HOST"
     value: "https://dbc-e6423d11-7a6d.cloud.databricks.com"
   - name: "DATABRICKS_WAREHOUSE_ID"
-    valueFrom: "sql-warehouse"
+    value: "7474647584281863"
   - name: "DATABRICKS_CATALOG"
     value: "dataknobs_predictive_maintenance_and_asset_management"
   - name: "DATABRICKS_SCHEMA"
