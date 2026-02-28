@@ -23,12 +23,13 @@ _DB_PATH = Path(__file__).parent.parent / "database" / "warehouse.db"
 _CATALOG = os.getenv("DATABRICKS_CATALOG", "main")
 _SCHEMA  = os.getenv("DATABRICKS_SCHEMA", "predictive_maintenance")
 
-# Table references
-CNC_TABLE         = f"{_CATALOG}.{_SCHEMA}.cnc_machine_data"
-ENGINE_TABLE      = f"{_CATALOG}.{_SCHEMA}.nasa_engine_rul"
-ELEC_TABLE        = f"{_CATALOG}.{_SCHEMA}.electrical_fault"
-TRANSFORMER_TABLE = f"{_CATALOG}.{_SCHEMA}.transformer_reading"
-HEATER_TABLE      = f"{_CATALOG}.{_SCHEMA}.heater_cycle"
+# Table references — names match Dataknobs Marketplace dataset (installed via Unity Catalog)
+# If your catalog/schema differ, update DATABRICKS_CATALOG and DATABRICKS_SCHEMA in app.yaml
+CNC_TABLE         = f"{_CATALOG}.{_SCHEMA}.cnc_data_ai_4_i_2020"
+ENGINE_TABLE      = f"{_CATALOG}.{_SCHEMA}.nasa_data_train_test"
+ELEC_TABLE        = f"{_CATALOG}.{_SCHEMA}.eletrical_fault_train_test_data"  # note: typo is in dataset
+TRANSFORMER_TABLE = f"{_CATALOG}.{_SCHEMA}.transformer_train_test_data"
+HEATER_TABLE      = f"{_CATALOG}.{_SCHEMA}.heater_train_test_data"
 AUDIT_TABLE       = f"{_CATALOG}.governance.audit_log"
 
 _CNC_TBL  = CNC_TABLE         if _IS_DB else "cnc_machine"
