@@ -1,0 +1,22 @@
+default_role: viewer
+
+users: {}  # populated by IT: email -> role
+
+roles:
+  viewer:
+    tabs: ["Overview", "CNC Analysis", "Engine Health", "Electrical Monitor", "Ask Your Data"]
+    can_export: false
+    can_see_pii: false
+    row_limit: 500
+
+  analyst:
+    tabs: ["Overview", "CNC Analysis", "Engine Health", "Electrical Monitor", "Ask Your Data", "Audit Log"]
+    can_export: true
+    can_see_pii: false
+    row_limit: 5000
+
+  admin:
+    tabs: all
+    can_export: true
+    can_see_pii: true
+    row_limit: 0  # unlimited

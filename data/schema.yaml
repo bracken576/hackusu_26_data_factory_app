@@ -1,0 +1,64 @@
+catalog: main
+schema: predictive_maintenance
+dataset: "Predictive Maintenance & Asset Management (Dataknobs, Databricks Marketplace)"
+
+tables:
+  cnc_machine_data:
+    description: CNC machine sensor readings and failure labels (AI4I 2020)
+    columns:
+      UDI:                    {type: int,    note: Unique identifier}
+      "Product ID":           {type: str,    note: Product serial number}
+      Type:                   {type: str,    note: "Quality grade — H(igh), M(edium), L(ow)"}
+      "Air temperature [K]":  {type: float,  note: Ambient air temperature in Kelvin}
+      "Process temperature [K]": {type: float, note: Machine process temperature in Kelvin}
+      "Rotational speed [rpm]": {type: int,  note: Spindle rotation speed}
+      "Torque [Nm]":          {type: float,  note: Applied torque}
+      "Tool wear [min]":      {type: int,    note: Accumulated tool wear in minutes}
+      "Machine failure":      {type: int,    note: "Binary — 1 if any failure occurred"}
+      TWF:                    {type: int,    note: Tool Wear Failure flag}
+      HDF:                    {type: int,    note: Heat Dissipation Failure flag}
+      PWF:                    {type: int,    note: Power Failure flag}
+      OSF:                    {type: int,    note: Overstrain Failure flag}
+      RNF:                    {type: int,    note: Random Failure flag}
+
+  nasa_engine_rul:
+    description: NASA turbofan engine degradation data with Remaining Useful Life
+    columns:
+      id:                   {type: int,   note: Engine identifier}
+      Cycle:                {type: int,   note: Operating cycle number (time proxy)}
+      OpSet1:               {type: float, note: Operational setting 1}
+      OpSet2:               {type: float, note: Operational setting 2}
+      OpSet3:               {type: int,   note: Operational setting 3}
+      SensorMeasure1-21:    {type: float, note: 21 sensor measurements per cycle}
+      RemainingUsefulLife:  {type: int,   note: "Cycles until maintenance required — lower = more urgent"}
+
+  electrical_fault:
+    description: Three-phase electrical fault detection dataset
+    columns:
+      G:  {type: int,   note: Ground fault flag (1=fault)}
+      C:  {type: int,   note: Phase-C fault flag}
+      B:  {type: int,   note: Phase-B fault flag}
+      A:  {type: int,   note: Phase-A fault flag}
+      Ia: {type: float, note: Phase-A current (Amps)}
+      Ib: {type: float, note: Phase-B current (Amps)}
+      Ic: {type: float, note: Phase-C current (Amps)}
+      Va: {type: float, note: Phase-A voltage (Volts)}
+      Vb: {type: float, note: Phase-B voltage (Volts)}
+      Vc: {type: float, note: Phase-C voltage (Volts)}
+
+  transformer_reading:
+    description: Transformer monitoring — time-series temperature, voltage, current
+    columns:
+      DeviceTimeStamp: {type: timestamp, note: Reading timestamp}
+      OTI:  {type: float, note: Oil Temperature Index}
+      WTI:  {type: float, note: Winding Temperature Index}
+      ATI:  {type: float, note: Ambient Temperature Index}
+      OLI:  {type: float, note: Oil Level Index}
+      VL1:  {type: float, note: Phase-1 voltage (V)}
+      VL2:  {type: float, note: Phase-2 voltage (V)}
+      VL3:  {type: float, note: Phase-3 voltage (V)}
+      IL1:  {type: float, note: Phase-1 current (A)}
+      IL2:  {type: float, note: Phase-2 current (A)}
+      IL3:  {type: float, note: Phase-3 current (A)}
+      INUT: {type: float, note: "Neutral current — imbalance indicator"}
+      MOG_A: {type: int,  note: Fault label (1=fault detected)}

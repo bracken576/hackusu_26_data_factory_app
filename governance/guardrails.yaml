@@ -1,0 +1,24 @@
+allowed_sql_operations:
+  - SELECT
+  - WITH  # CTEs allowed
+
+blocked_sql_operations:
+  - INSERT
+  - UPDATE
+  - DELETE
+  - DROP
+  - TRUNCATE
+  - CREATE
+  - ALTER
+  - EXEC
+  - EXECUTE
+  - GRANT
+  - REVOKE
+
+resource_limits:
+  max_rows_per_query: 10000
+  max_query_execution_seconds: 30
+  max_concurrent_queries_per_user: 3
+  max_export_rows: 50000
+  max_chart_data_points: 5000
+  max_chat_input_chars: 2000

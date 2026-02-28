@@ -1,0 +1,15 @@
+command: ["python", "app.py"]
+
+env:
+  - name: "DATABRICKS_WAREHOUSE_ID"
+    valueFrom: "sql-warehouse"
+  - name: "DATABRICKS_CATALOG"
+    value: "main"
+  - name: "DATABRICKS_SCHEMA"
+    value: "predictive_maintenance"
+  - name: "GENIE_SPACE_ID"
+    value: ""
+  - name: "BEDROCK_REGION"
+    value: "us-east-1"
+  - name: "USE_MOCK_AI"
+    value: "false"

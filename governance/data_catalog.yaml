@@ -1,0 +1,50 @@
+catalog: main
+schema: predictive_maintenance
+publisher: Dataknobs (Databricks Marketplace)
+
+tables:
+  - name: cnc_machine_data
+    path: main.predictive_maintenance.cnc_machine_data
+    sensitivity: INTERNAL
+    allowed_roles: [viewer, analyst, admin]
+    description: CNC machine sensor readings with failure labels (AI4I 2020 dataset)
+    pii_columns: []
+    key_columns: [UDI]
+
+  - name: nasa_engine_rul
+    path: main.predictive_maintenance.nasa_engine_rul
+    sensitivity: INTERNAL
+    allowed_roles: [viewer, analyst, admin]
+    description: NASA turbofan engine degradation data with Remaining Useful Life
+    pii_columns: []
+    key_columns: [id, Cycle]
+
+  - name: electrical_fault
+    path: main.predictive_maintenance.electrical_fault
+    sensitivity: INTERNAL
+    allowed_roles: [viewer, analyst, admin]
+    description: Electrical fault detection — phase currents and voltages with fault flags
+    pii_columns: []
+    key_columns: []
+
+  - name: transformer_reading
+    path: main.predictive_maintenance.transformer_reading
+    sensitivity: INTERNAL
+    allowed_roles: [viewer, analyst, admin]
+    description: Transformer monitoring — time-series temperature, voltage, and current readings
+    pii_columns: []
+    key_columns: [DeviceTimeStamp]
+
+  - name: heater_cycle
+    path: main.predictive_maintenance.heater_cycle
+    sensitivity: INTERNAL
+    allowed_roles: [analyst, admin]
+    description: Battery/heater charge cycle data with capacity degradation
+    pii_columns: []
+    key_columns: [id_cycle, PhID]
+
+approved_templates:
+  - predictive_maintenance_overview
+  - cnc_failure_analysis
+  - engine_rul_tracker
+  - electrical_fault_monitor
