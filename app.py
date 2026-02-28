@@ -49,6 +49,19 @@ from components import (
     admin_tab,
 )
 
+# Workaround: Gradio 4.44.x / gradio_client crash when API schema has a boolean
+# (TypeError: argument of type 'bool' is not iterable in get_type()). Patch before UI is served.
+try:
+    import gradio_client.utils as _gc_utils
+    _get_type_orig = _gc_utils.get_type
+    def _get_type_patched(schema):
+        if isinstance(schema, bool):
+            return "boolean"
+        return _get_type_orig(schema)
+    _gc_utils.get_type = _get_type_patched
+except Exception:
+    pass
+
 try:
     summary = db_service.get_summary_kpis()
     logger.info("Startup KPIs loaded: %s", summary)
@@ -104,4 +117,10 @@ with gr.Blocks(css=_CSS, title="Predictive Maintenance Hub") as demo:
 
 
 if __name__ == "__main__":
-    demo.launch()
+    print("Starting Gradio server... (wait for 'Running on local URL' before opening the browser)")
+    demo.launch(
+        server_name="0.0.0.0",
+        server_port=int(os.getenv("PORT", 7860)),
+        show_error=True,
+        share=False,
+    )

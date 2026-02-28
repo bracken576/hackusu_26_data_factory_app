@@ -1,8 +1,9 @@
 databricks-sql-connector~=3.4.0
 databricks-sdk~=0.33.0
-gradio>=4.44.0,<5
-gradio-client>=0.9.1
-huggingface-hub>=0.23.0,<1
+# If you see "argument of type 'bool' is not iterable" on first load, app.py includes a workaround.
+# Upgrading can also help: pip install --upgrade gradio gradio_client
+gradio~=4.44.0
+huggingface-hub~=0.35.3
 pandas~=2.2.3
 plotly~=5.22.0
 strands-agents
